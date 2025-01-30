@@ -7,7 +7,8 @@ import ForgotPassword from "./components/ForgotPassword";
 import UpdateProfile from "./components/UpdateProfile";
 import Dashboard from "./components/Dashboard";
 import LogOut from "./components/LogOut";
-import RequireAuth from "./context/RequireAuth"; // Import RequireAuth component
+import RequireAuth from "./context/requireAuth"; // Import RequireAuth component
+import EmailVerificationPage from "./components/EmailVerificationPage";
 
 function App() {
   return (
@@ -22,11 +23,11 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<LogOut />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/update-profile" element={<UpdateProfile />} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/verify-email" element={<EmailVerificationPage />} />
             {/* Protected Routes */}
-            <Route element={<RequireAuth />}>
-              <Route path="/update-profile" element={<UpdateProfile />} />
-              <Route path="/" element={<Dashboard />} />
-            </Route>
+            <Route element={<RequireAuth />}></Route>
           </Routes>
         </Router>
       </div>

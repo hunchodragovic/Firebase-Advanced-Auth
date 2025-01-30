@@ -20,8 +20,14 @@ const UpdateProfile = () => {
     try {
       setError("");
       setLoading(true);
-      await updateUserEmail(email); // Calling the updateUserEmail function
-      setSuccess("Email updated successfully.");
+
+      // Step 1: Send verification email
+      await updateUserEmail(email);
+
+      // Notify the user to verify their new email
+      setSuccess(
+        "A verification email has been sent. Please verify your new email before it can be updated."
+      );
     } catch (error) {
       setError(error.message || "Failed to update email.");
     } finally {

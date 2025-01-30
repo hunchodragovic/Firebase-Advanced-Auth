@@ -50,12 +50,16 @@ export function AuthProvider({ children }) {
   async function updateUserEmail(newEmail) {
     if (currentUser) {
       try {
-        // First, send verification to the new email
-        await sendEmailVerification(currentUser);
-        // After the user verifies the new email, update the email
-        await updateEmail(currentUser, newEmail);
+        // Step 1: Send a verification email to the new email address
+        await sendEmailVerification(currentUser, {
+          email: newEmail,
+          url: "http://localhost:3000/verify-email", // Replace with your app's URL
+        });
+
+        // Notify the user to check their inbox
+        console.log("Verification email sent. Please verify your new email.");
       } catch (error) {
-        console.error("Error updating email:", error.message);
+        console.error("Error sending verification email:", error.message);
         throw error;
       }
     } else {
