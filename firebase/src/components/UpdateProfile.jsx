@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Card, Button, Form, Alert } from "react-bootstrap";
 import { useAuth } from "../context/AuthContext"; // Importing the useAuth hook
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 
 const UpdateProfile = () => {
   const { currentUser, updateUserEmail, updateUserPassword } = useAuth(); // Accessing update functions
@@ -10,6 +11,8 @@ const UpdateProfile = () => {
   const [email, setEmail] = useState(currentUser?.email || ""); // Current user email
   const [password, setPassword] = useState(""); // Password
   const [passwordConfirm, setPasswordConfirm] = useState(""); // Password confirmation
+
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleEmailChange = async (e) => {
     e.preventDefault();
@@ -101,6 +104,14 @@ const UpdateProfile = () => {
             {loading ? "Updating..." : "Update Password"}
           </Button>
         </Form>
+        {/* Back to Dashboard Button */}
+        <Button
+          className="w-100 mt-4"
+          variant="secondary"
+          onClick={() => navigate("/")} // Navigates to the dashboard
+        >
+          Back to Dashboard
+        </Button>
       </Card.Body>
     </Card>
   );
