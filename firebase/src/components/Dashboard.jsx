@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card, Button, Alert } from "react-bootstrap";
 import { useAuth } from "../context/AuthContext"; // Importing the useAuth hook
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const { currentUser, logout } = useAuth(); // Accessing currentUser and logout function
@@ -38,6 +38,9 @@ const Dashboard = () => {
           {currentUser && (
             <div>
               <p className="text-center">Welcome, {currentUser.email}!</p>
+              <Link to="/update-profile" className="btn btn-primary w-100">
+                Update Profile
+              </Link>
               <Button
                 className="w-100 mt-3"
                 variant="danger"
