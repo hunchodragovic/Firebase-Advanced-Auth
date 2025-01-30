@@ -19,7 +19,7 @@ const EmailVerificationPage = () => {
 
         // Reload the user to get the latest email verification status
         await reloadUser();
-
+ 
         if (currentUser?.emailVerified) {
           setSuccess("Your email has been successfully verified!");
         } else {
